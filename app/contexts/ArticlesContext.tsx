@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
 import { Article, GroupedTags } from "../types/types";
 import { getTopTags } from "../utils/tags";
 import { getFilteredArticles } from "../utils/articles";
+import { getArticles } from "../actions";
 
 type ArticlesContextType = {
   articles: Article[];
@@ -31,11 +32,8 @@ const ArticlesProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchArticles = async () => {
     try {
-      const response = await fetch(
-        "https://jrt2bb3b2nlkw5ozvfcld62wbe0pnifh.lambda-url.us-east-1.on.aws/"
-      );
-      const data = await response.json();
-      setArticles(data.articles);
+      const articles = await getArticles();
+      setArticles(articles);
     } catch (error) {
       console.error(error);
     }
@@ -44,18 +42,6 @@ const ArticlesProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     fetchArticles();
   }, []);
-
-  useEffect(() => {
-    console.log("articles", articles);
-  }, [articles]);
-
-  useEffect(() => {
-    console.log("topTags", topTags);
-  }, [topTags]);
-
-  useEffect(() => {
-    console.log("filteredArticles", filteredArticles);
-  }, [filteredArticles]);
 
   return (
     <ArticlesContext.Provider

@@ -142,10 +142,6 @@ input:focus {
   outline: none;
 }
 
-body {
-  font-family: Arial, "sans-serif";
-}
-
 #wrap {
   position: relative;
   margin-bottom: 80px;

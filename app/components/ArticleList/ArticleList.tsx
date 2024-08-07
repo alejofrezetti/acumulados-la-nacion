@@ -1,8 +1,9 @@
 "use client";
 import { useContext, useState } from "react";
-import { ArticlesContext } from "../contexts/ArticlesContext";
-import { Article } from "../types/types";
-import { formatDate } from "../utils/date";
+import { ArticlesContext } from "../../contexts/ArticlesContext";
+import { Article } from "../../types/types";
+import { formatDate } from "../../utils/date";
+import Link from "next/link";
 
 export default function ArticleList() {
   const { filteredArticles } = useContext(ArticlesContext);
@@ -21,7 +22,7 @@ export default function ArticleList() {
             className="mod-caja-nota living w-100-mobile"
           >
             <section id="" className="cont-figure">
-              <a href="" className="figure">
+              <Link href="" className="figure">
                 <picture id="" className="content-pic picture">
                   <img
                     src={article.promo_items?.basic.url}
@@ -29,11 +30,11 @@ export default function ArticleList() {
                     className="content-img"
                   />
                 </picture>
-              </a>
+              </Link>
             </section>
             <div className="mod-caja-nota__descrip lugares">
               <h2 className="com-title-acu">
-                <a href="">{article.headlines.basic}</a>
+                <Link href="">{article.headlines.basic}</Link>
               </h2>
               <h4 className="com-date">{formatDate(article.display_date)}</h4>
             </div>
