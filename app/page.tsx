@@ -1,4 +1,4 @@
-import ArticleList from "./components/ArticleList/ArticleList";
+import ArticleList from "./components/ArticleList";
 import TopTagsList from "./components/TopTagsList";
 
 export default function Home() {

@@ -1,9 +1,9 @@
 "use client";
 import { useContext, useState } from "react";
-import { ArticlesContext } from "../../contexts/ArticlesContext";
-import { Article } from "../../types/types";
-import { formatDate } from "../../utils/date";
 import Link from "next/link";
+import { ArticlesContext } from "../contexts/ArticlesContext";
+import { Article } from "../types/types";
+import { formatDate } from "../utils/date";
 
 export default function ArticleList() {
   const { filteredArticles } = useContext(ArticlesContext);

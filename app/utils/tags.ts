@@ -1,6 +1,5 @@
 import { Article, GroupedTags } from "../types/types";
 
-
 export function getTopTags(data: Article[]): GroupedTags[] {
     // Group tags by slug
     const groupedTags: GroupedTags[] = [];
