@@ -1,9 +1,9 @@
 import { Article, GroupedTags } from "../types/types";
 
-export function getTopTags(data: Article[]): GroupedTags[] {
+export function getTopTags(articles: Article[]): GroupedTags[] {
     // Group tags by slug
     const groupedTags: GroupedTags[] = [];
-    data.forEach((article: Article) => {
+    articles.forEach((article: Article) => {
       article.taxonomy.tags.forEach((tag) => {
         const existingTag = groupedTags.find(
           (groupedTag) => groupedTag.slug === tag.slug

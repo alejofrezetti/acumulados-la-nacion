@@ -1,7 +1,13 @@
 import ArticleList from "./components/ArticleList";
 import TopTagsList from "./components/TopTagsList";
+import { getArticles } from "./data";
+import { GroupedTags } from "./types/types";
+import { getTopTags } from "./utils/tags";
 
-export default function Home() {
+export default async function Home() {
+  const articles = await getArticles();
+  let topTags: GroupedTags[] = [];
+  if (articles) topTags = getTopTags(articles);
   return (
     <main>
       <div className="lay-sidebar">
@@ -13,10 +19,16 @@ export default function Home() {
               </h1>
             </div>
           </div>
-          <div className="row">
-            <TopTagsList />
-          </div>
-          <ArticleList />
+          {articles && articles.length > 0 ? (
+            <>
+              <div className="row">
+                <TopTagsList topTags={topTags} />
+              </div>
+              <ArticleList articles={articles} />
+            </>
+          ) : (
+            <p>{"Sin resultados :("}</p>
+          )}
         </div>
         <div className="sidebar__aside">
           <div className="banner --desktop --large"></div>

@@ -1,22 +1,16 @@
-"use client";
-import { useContext, useState } from "react";
 import Link from "next/link";
-import { ArticlesContext } from "../contexts/ArticlesContext";
 import { Article } from "../types/types";
 import { formatDate } from "../utils/date";
 
-export default function ArticleList() {
-  const { filteredArticles } = useContext(ArticlesContext);
-  const [visibleArticles, setVisibleArticles] = useState(10);
+type ArticleListProps = {
+  articles: Article[];
+};
 
-  const handleShowMore = () => {
-    setVisibleArticles((prevVisibleArticles) => prevVisibleArticles + 10);
-  };
-
+export default function ArticleList({ articles }: ArticleListProps) {
   return (
     <>
       <section className="row-gap-tablet-2 row-gap-deskxl-3 hlp-degrade">
-        {filteredArticles.slice(0, visibleArticles).map((article: Article) => (
+        {articles.map((article: Article) => (
           <article
             key={article._id}
             className="mod-caja-nota living w-100-mobile"
@@ -41,18 +35,6 @@ export default function ArticleList() {
           </article>
         ))}
       </section>
-      {visibleArticles < filteredArticles.length && (
-        <section className="row">
-          <div className="col-12 hlp-text-center hlp-margintop-40">
-            <button
-              className="--btn --secondary"
-              onClick={() => handleShowMore()}
-            >
-              MÁS NOTAS DE ACUMULADO GRILLA
-            </button>
-          </div>
-        </section>
-      )}
     </>
   );
 }
