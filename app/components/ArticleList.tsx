@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Article } from "../types/types";
 import { formatDate } from "../utils/date";
+import ImageNotAvailable from "@/public/not_available.webp";
+import Image from "next/image";
 
 type ArticleListProps = {
   articles: Article[];
@@ -18,10 +20,19 @@ export default function ArticleList({ articles }: ArticleListProps) {
             <section id="" className="cont-figure">
               <Link href="" className="figure">
                 <picture id="" className="content-pic picture">
-                  <img
-                    src={article.promo_items?.basic.url}
-                    alt={article.promo_items?.basic.subtitle}
+                  <Image
+                    width={384}
+                    height={256}
+                    src={article.promo_items?.basic.url ?? ImageNotAvailable}
+                    alt={
+                      article.promo_items?.basic.subtitle ??
+                      "Image not available"
+                    }
                     className="content-img"
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto",
+                    }}
                   />
                 </picture>
               </Link>
